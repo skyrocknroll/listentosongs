@@ -14,14 +14,14 @@ env = 'PROD'
 #DB Details
 if env == 'PROD':
     DB_Host = 'localhost'
-    DB_UserName = 'psgkriya_rathi'
-    DB_Password = 'rathi123!@#'
-    DB_Name = 'psgkriya_rathimusic'
+    DB_UserName = 'xxxx'
+    DB_Password = 'xxxx!@#'
+    DB_Name = 'xxxxx'
 elif(env == 'DEV'):
     DB_Host = 'localhost'
     DB_UserName = 'root'
     DB_Password = ''
-    DB_Name = 'psgkriya_rathimusic'
+    DB_Name = 'xxx'
 
 
 
