@@ -10,18 +10,18 @@ import re
 #variables
 folderName = 'qwuwiyr647e23e'+str(random.randint(1, 10))+'/'
 
-env = 'PROD'
+env = 'DEV'
 #DB Details
 if env == 'PROD':
     DB_Host = 'localhost'
-    DB_UserName = 'xxxx'
-    DB_Password = 'xxxx!@#'
-    DB_Name = 'xxxxx'
+    DB_UserName = 'psgkriya_rathi'
+    DB_Password = 'rathi123!@#'
+    DB_Name = 'psgkriya_rathimusic'
 elif(env == 'DEV'):
     DB_Host = 'localhost'
     DB_UserName = 'root'
     DB_Password = ''
-    DB_Name = 'xxx'
+    DB_Name = 'psgkriya_rathimusic'
 
 
 
@@ -35,11 +35,16 @@ def getDBConnection():
     con = MySQLdb.Connect(DB_Host, DB_UserName,DB_Password,DB_Name)
     return con
 
-def fetchAndSaveIt(songId) :
+def fetchAndSaveIt(songId , lang) :
     con = getDBConnection()
     cursor = con.cursor()
     songId = str(songId)
-    sql = "select Song_URL,Local_URL,Song_Name FROM music WHERE Song_Id="+str(songId)
+    if(lang == "Tamil"):
+        sql = "select Song_URL,Local_URL,Song_Name FROM music WHERE Song_Id="+str(songId)
+    elif lang == "Hindi":
+        sql = "select Song_URL,Local_URL,Song_Name FROM hindi WHERE Song_Id="+str(songId)
+    elif lang == "Telugu":
+        sql = "select Song_URL,Local_URL,Song_Name FROM telugu WHERE Song_Id="+str(songId)
     cursor.execute(sql)
     url = cursor.fetchone()
     con.close()
@@ -57,7 +62,12 @@ def fetchAndSaveIt(songId) :
         try:
             con = getDBConnection()
             cursor = con.cursor()
-            sql = "UPDATE music SET Local_URL ='"+fileLoc+"' WHERE Song_Id="+songId
+            if lang == "Tamil":
+                sql = "UPDATE music SET Local_URL ='"+fileLoc+"' WHERE Song_Id="+songId
+            elif lang =="Hindi":
+                sql = "UPDATE hindi SET Local_URL ='"+fileLoc+"' WHERE Song_Id="+songId
+            elif lang == "Telugu":
+                sql = "UPDATE telugu SET Local_URL ='"+fileLoc+"' WHERE Song_Id="+songId
             cursor.execute(sql)
             con.commit()
             con.close()
@@ -75,12 +85,13 @@ def response():
     print "Content-type: text/json"
     print ""
     form = cgi.FieldStorage()
+    lang = str(form["lang"].value)
     song_Id = str(form["song_id"].value)
     match = re.search(r'[^0-9]' , song_Id )
 #    print match
     if match:
         print '{ "Id" : "'+song_Id+'", "source" : "local" ,"status":"failure" , "src":"" , "title":"" }'
     else:
-        fetchAndSaveIt(song_Id)
+        fetchAndSaveIt(song_Id,lang)
 
 response()

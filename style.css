@@ -1,8 +1,7 @@
 * {margin:0;padding:0}
 html {min-width:1000px}
 body {background:url(images/tail-cont.gif) repeat center top #f2c142;font-family:Tahoma, Arial, helvetica, sans-serif;font-size:100%;line-height:1em;color:#000;min-width:1000px}
-input, textarea, select {font-family:Tahoma, Arial, helvetica, sans-serif;font-size:1em}
-input, select {vertical-align:middle;font-weight:normal}
+
 img {border:0;vertical-align:top;text-align:left}
 object {vertical-align:top;outline:none}
 /* global */
@@ -117,3 +116,56 @@ h3 {font-size:25px}
 	}
 	
 .working{background:url('images/indicator.gif') no-repeat right center;}
+
+.playlist-options  {
+	
+	padding-top: 3px;
+	
+}
+/* Distribution style */
+#lang {text-align:justify}
+#lang * {display:inline}
+#lang b {display:inline-block}
+
+#lang .stretcher {
+display:inline-block;
+position:relative;
+width: 100%; 
+height: 0
+}
+.clear { /* generic container (i.e. div) for floating buttons */
+    overflow: hidden;
+    width: 100%;
+}
+
+a.button {
+    background: transparent url('images/bg_button_a.gif') no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url('images/bg_button_span.gif') no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+}
+
+a.button:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+} 
+
+
