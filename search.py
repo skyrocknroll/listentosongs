@@ -9,12 +9,12 @@ env = 'DEV'
 if env == 'PROD':
     DB_Host = 'localhost'
     DB_UserName = 'psgkriya_rathi'
-    DB_Password = 'rathi123!@#'
+    DB_Password = 'password'
     DB_Name = 'psgkriya_rathimusic'
 else:
     DB_Host = 'localhost'
     DB_UserName = 'root'
-    DB_Password = ''
+    DB_Password = 'password'
     DB_Name = 'psgkriya_rathimusic'
 
 
